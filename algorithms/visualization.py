@@ -1,8 +1,9 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import community
+import os
 
-from textrank import textrank_graph, keywords_to_nodes
+from .textrank import textrank_graph, keywords_to_nodes
 
 """
 to initialize a graph
@@ -93,6 +94,8 @@ def drawgraph(G, cmap = "Blues", nodesize = 350, graphtype = None, savepath=None
         plt.show()
 
     if savepath != None:
-        plt.savefig(savepath,  bbox_inches ='tight')
+        if not os.path.exists("graphs\\"):
+            os.makedirs("graphs\\")
+        plt.savefig("graphs\\"+savepath,  bbox_inches ='tight')
         plt.close()
         
