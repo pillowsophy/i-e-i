@@ -56,6 +56,15 @@ def textrank_keyword(ibys, wordlist, topk = 30):
     keywords = [(wordlist[idx], R[idx]) for idx in reversed(idxs)]
     return keywords
 
+def textrank_allwords(ibys, wordlist):
+    counter = count_window(ibys)
+    m = adjacency_matrix(counter, size=len(wordlist))
+    R = pagerank(m).reshape(-1)
+    idxs = R.argsort()
+    keywords = [(wordlist[idx], int(R[idx]*10)) for idx in reversed(idxs)]
+    return keywords
+
+
 def textrank_graph(G, center, topk = 5):
     tmpG = G.copy()
     tmpG.remove_node(center)

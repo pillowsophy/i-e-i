@@ -1,43 +1,41 @@
-
 level = 3
-numofkeys = 15 #the number of mainkeywords   #2**level -1 #sum of G.P. with common ratio = 2
+numofkeys = 5 #the number of mainkeywords   #2**level -1 #sum of G.P. with common ratio = 2
 
 from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
-text = get_data('data/EI_original copy.txt')
-# text = get_data()
+# text = get_data('data/EI_original copy.txt')
+text = get_data()
 wbys = word_by_sent(text)
 wordlist = wbys_to_word(wbys)
 wtoi = word_to_idx(wordlist)
 ibys = idx_by_sent(wbys, wtoi)
 
-from algorithms.textrank import count_window, textrank_keyword
+from algorithms.textrank import count_window, textrank_keyword, textrank_allwords
 counter = count_window(ibys, 5)
-mainkeywords = textrank_keyword(ibys, wordlist,numofkeys)
-print(mainkeywords)
+# mainkeywords = textrank_keyword(ibys, wordlist,numofkeys)
+# keywords = textrank_allwords(ibys, wordlist)
+# print(keywords)
 
-# import algorithms.visualization as vis
-# cnt_draw = vis.counter_draw(counter,wordlist)
-# IG = vis.initialGraph(cnt_draw,wordlist)
-# vis.drawgraph(IG, cmap = "Blues", nodesize = 350, graphtype = None, savepath="initial.png", show = False)
+import algorithms.visualization as vis
+cnt_draw = vis.counter_draw(counter,wordlist)
+IG = vis.initialGraph(cnt_draw,wordlist)
 
-# vis.communityGraph(IG) 
-# vis.drawgraph(IG, cmap = "Pastel1", nodesize = 350, graphtype = "community", savepath="community.png", show = False)
+import community
+comm = community.best_partition(IG)
 
-# energy_SG = vis.subGraph(IG, "energy")
-# vis.drawgraph(energy_SG, cmap = "Oranges", nodesize = 350, graphtype = None, savepath="subgraph.png", show = False)
+isUsed = 0
+data = []
+for key, value in comm.items():
+    if isUsed & (1<<value): # already used community
+        for circle in data:
+            if circle["children"][0]["name"] == value:
+                circle["children"][0]["children"].append({"name": key, "size": 10})
+    else:# first to be used
+        isUsed |= (1<<value)
+        circle = {}
+        circle["name"] = key
+        circle["children"] = [{"name": value, "children": []}]
+        data.append(circle)
 
-# energy_SCG = vis.subCommunityGraph(IG, "energy") #only after communityGraph() method
-# vis.drawgraph(energy_SCG, cmap = "Pastel1", nodesize = 350, graphtype = "community", savepath="subcommunity.png", show = False)
-
-"""
-The core of this project:
-1. Method textrankGraph() must be implemented after communityGraph() method and textrank_keyword() method.
-2. It takes one mainkeyword tuple which formed like: ('bars', 1.8823393131581336).
-3. The parameter 'subgraph' determines wheter the result is 
-   subgraph of community graph or just whole community graph, which includes given mainkeyword.
-4. You can use any type for graphtype parameter("community", "textrank", None), but "textrank" shows the best visualization.
-"""
-# TG = vis.textrankGraph(IG, mainkeywords[0], subgraph = False) #textrank graph with whole community
-# vis.drawgraph(TG, cmap = "YlGn", graphtype = "textrank", savepath="textrankgraph.png",show = False)
-# STG = vis.textrankGraph(IG, mainkeywords[0], subgraph = True) #sub textrank graph
-# vis.drawgraph(STG, cmap = "YlGn", graphtype = "textrank", savepath="subtextrankgraph.png",show = False)
+import json
+with open("d3/my_cp.json", "w") as json_file:
+   json.dump(data, json_file, indent=4)
