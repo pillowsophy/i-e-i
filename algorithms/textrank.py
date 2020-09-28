@@ -48,22 +48,18 @@ def pagerank(matrix, df=0.85, max_iter=30): #TODO: change to exact textrank algo
     return R
 
 
-def textrank_keyword(ibys, wordlist, topk = 30):
-    counter = count_window(ibys)
-    m = adjacency_matrix(counter, size=len(wordlist))
-    R = pagerank(m).reshape(-1)
-    idxs = R.argsort()[-topk:]
-    keywords = [(wordlist[idx], R[idx]) for idx in reversed(idxs)]
-    return keywords
-
-def textrank_allwords(ibys, wordlist):
+def textrank_keyword(ibys, wordlist, topk = 0, onlyWords = False):
     counter = count_window(ibys)
     m = adjacency_matrix(counter, size=len(wordlist))
     R = pagerank(m).reshape(-1)
     idxs = R.argsort()
-    keywords = [(wordlist[idx], int(R[idx]*10)) for idx in reversed(idxs)]
+    if(topk != 0):
+        idxs =  idxs[-topk:]
+    if onlyWords:
+        keywords = [wordlist[idx] for idx in reversed(idxs)]
+    else:
+        keywords = [(wordlist[idx], int(R[idx]*10)) for idx in reversed(idxs)]
     return keywords
-
 
 def textrank_graph(G, center, topk = 5):
     tmpG = G.copy()
