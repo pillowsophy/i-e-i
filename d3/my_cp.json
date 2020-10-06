@@ -1,8 +1,7 @@
 {
-    "name": "my_cp",
+    "name": "my_cp_v2",
     "children": [
         {
-            "community": 0,
             "name": "bars",
             "children": [
                 {
@@ -15,9 +14,14 @@
                         {
                             "name": "fat",
                             "size": 26
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "oil",
+                    "children": [
                         {
-                            "name": "oil",
+                            "name": "vitamins",
                             "size": 10
                         },
                         {
@@ -25,31 +29,28 @@
                             "size": 10
                         },
                         {
-                            "name": "dinner",
-                            "size": 10
-                        },
-                        {
-                            "name": "vitamins",
-                            "size": 10
-                        },
-                        {
                             "name": "nutritional",
+                            "size": 10
+                        },
+                        {
+                            "name": "dinner",
                             "size": 10
                         },
                         {
                             "name": "replacement",
                             "size": 9
-                        },
-                        {
-                            "name": "boost",
-                            "size": 7
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "snacks",
+                    "children": [
                         {
                             "name": "meal",
                             "size": 7
                         },
                         {
-                            "name": "snacks",
+                            "name": "meals",
                             "size": 7
                         },
                         {
@@ -57,379 +58,58 @@
                             "size": 7
                         },
                         {
-                            "name": "meals",
+                            "name": "boost",
                             "size": 7
-                        }
-                    ]
-                },
-                {
-                    "name": "satisfying",
-                    "children": [
-                        {
-                            "name": "satisfy",
-                            "size": 11
-                        },
-                        {
-                            "name": "specific",
-                            "size": 10
-                        },
-                        {
-                            "name": "snickers",
-                            "size": 10
-                        },
-                        {
-                            "name": "flavors",
-                            "size": 10
                         }
                     ]
                 }
             ]
         },
         {
-            "community": 1,
             "name": "energy",
             "children": [
                 {
-                    "name": "wide",
+                    "name": "fortified",
+                    "children": [
+                        {
+                            "name": "palates",
+                            "size": 4
+                        },
+                        {
+                            "name": "closely",
+                            "size": 4
+                        }
+                    ]
+                },
+                {
+                    "name": "significantly",
                     "children": [
                         {
                             "name": "ingredients",
                             "size": 8
                         },
                         {
-                            "name": "significantly",
-                            "size": 8
-                        },
-                        {
-                            "name": "containing",
-                            "size": 8
-                        },
-                        {
                             "name": "gaps",
                             "size": 5
-                        },
-                        {
-                            "name": "fortified",
-                            "size": 5
-                        },
-                        {
-                            "name": "closely",
-                            "size": 4
-                        },
-                        {
-                            "name": "palates",
-                            "size": 4
-                        },
+                        }
+                    ]
+                },
+                {
+                    "name": "wide",
+                    "children": []
+                },
+                {
+                    "name": "word",
+                    "children": [
                         {
                             "name": "like",
                             "size": 4
-                        },
-                        {
-                            "name": "word",
-                            "size": 4
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "community": 2,
-            "name": "protein",
-            "children": [
+                },
                 {
-                    "name": "nutrition",
-                    "children": [
-                        {
-                            "name": "contain",
-                            "size": 17
-                        },
-                        {
-                            "name": "foods",
-                            "size": 7
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 3,
-            "name": "higher",
-            "children": [
-                {
-                    "name": "consumed",
-                    "children": [
-                        {
-                            "name": "suited",
-                            "size": 9
-                        },
-                        {
-                            "name": "fruit",
-                            "size": 9
-                        },
-                        {
-                            "name": "covered",
-                            "size": 8
-                        },
-                        {
-                            "name": "listed",
-                            "size": 8
-                        },
-                        {
-                            "name": "candy",
-                            "size": 8
-                        },
-                        {
-                            "name": "mimic",
-                            "size": 8
-                        },
-                        {
-                            "name": "coatings",
-                            "size": 7
-                        },
-                        {
-                            "name": "kernel",
-                            "size": 7
-                        },
-                        {
-                            "name": "intended",
-                            "size": 6
-                        },
-                        {
-                            "name": "try",
-                            "size": 6
-                        },
-                        {
-                            "name": "created",
-                            "size": 6
-                        },
-                        {
-                            "name": "benefit",
-                            "size": 6
-                        },
-                        {
-                            "name": "terms",
-                            "size": 6
-                        },
-                        {
-                            "name": "needs",
-                            "size": 5
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 4,
-            "name": "aim",
-            "children": [
-                {
-                    "name": "syrup",
-                    "children": [
-                        {
-                            "name": "chocolate",
-                            "size": 15
-                        },
-                        {
-                            "name": "convenient",
-                            "size": 14
-                        },
-                        {
-                            "name": "source",
-                            "size": 14
-                        },
-                        {
-                            "name": "help",
-                            "size": 14
-                        },
-                        {
-                            "name": "minerals",
-                            "size": 14
-                        },
-                        {
-                            "name": "sugars",
-                            "size": 14
-                        },
-                        {
-                            "name": "grams",
-                            "size": 13
-                        },
-                        {
-                            "name": "provide",
-                            "size": 8
-                        },
-                        {
-                            "name": "brown",
-                            "size": 8
-                        },
-                        {
-                            "name": "rice",
-                            "size": 8
-                        },
-                        {
-                            "name": "choosing",
-                            "size": 8
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 5,
-            "name": "athletes",
-            "children": [
-                {
-                    "name": "satisfying",
-                    "children": [
-                        {
-                            "name": "satisfy",
-                            "size": 11
-                        },
-                        {
-                            "name": "specific",
-                            "size": 10
-                        },
-                        {
-                            "name": "snickers",
-                            "size": 10
-                        },
-                        {
-                            "name": "flavors",
-                            "size": 10
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 6,
-            "name": "variety",
-            "children": [
-                {
-                    "name": "tide",
-                    "children": [
-                        {
-                            "name": "category",
-                            "size": 9
-                        },
-                        {
-                            "name": "place",
-                            "size": 9
-                        },
-                        {
-                            "name": "serve",
-                            "size": 9
-                        },
-                        {
-                            "name": "nutritious",
-                            "size": 9
-                        },
-                        {
-                            "name": "calories",
-                            "size": 9
-                        },
-                        {
-                            "name": "carbohydrates",
-                            "size": 7
-                        },
-                        {
-                            "name": "generally",
-                            "size": 7
-                        },
-                        {
-                            "name": "weight",
-                            "size": 7
-                        },
-                        {
-                            "name": "decent",
-                            "size": 7
-                        },
-                        {
-                            "name": "example",
-                            "size": 3
-                        },
-                        {
-                            "name": "granola",
-                            "size": 3
-                        },
-                        {
-                            "name": "sugar",
-                            "size": 3
-                        },
-                        {
-                            "name": "low",
-                            "size": 3
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 7,
-            "name": "nuts",
-            "children": [
-                {
-                    "name": "yogurt",
-                    "children": [
-                        {
-                            "name": "vary",
-                            "size": 8
-                        },
-                        {
-                            "name": "better",
-                            "size": 8
-                        },
-                        {
-                            "name": "cane",
-                            "size": 8
-                        },
-                        {
-                            "name": "invert",
-                            "size": 8
-                        },
-                        {
-                            "name": "different",
-                            "size": 8
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "community": 8,
-            "name": "fooled",
-            "children": [
-                {
-                    "name": "palm",
-                    "children": [
-                        {
-                            "name": "looking",
-                            "size": 4
-                        },
-                        {
-                            "name": "watchers",
-                            "size": 4
-                        },
-                        {
-                            "name": "pick",
-                            "size": 4
-                        },
-                        {
-                            "name": "general",
-                            "size": 4
-                        },
-                        {
-                            "name": "equal",
-                            "size": 3
-                        },
-                        {
-                            "name": "afford",
-                            "size": 3
-                        },
-                        {
-                            "name": "watch",
-                            "size": 3
-                        }
-                    ]
+                    "name": "containing",
+                    "children": []
                 }
             ]
         }
