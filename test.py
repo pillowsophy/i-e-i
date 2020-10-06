@@ -16,33 +16,34 @@ g_words = textrank_keyword(ibys, wordlist, onlyWords=True)
 
 import algorithms.visualization as vis
 import networkx as nx
-import community
-import random
+
 cnt_draw = vis.counter_draw(counter,g_words)
 IG = vis.initialGraph(cnt_draw,g_words)
+
 vis.communityGraph(IG)
+comms = nx.get_node_attributes(IG, 'comm')
 
 subnodes = keywords_to_nodes(mainkeywords)
 nx.set_node_attributes(IG, subnodes)
-
-comms = nx.get_node_attributes(IG, 'comm')
 weights = nx.get_node_attributes(IG, 'weight')
 
+'''
 data = []
 isUsed = 0
 for word, comm in comms.items():
     if (isUsed & (1<<comm)) == 0:
-        data.append({"name":comm, "children": []})
+        data.append({"community":comm, "name":word, "children": []})
         isUsed |= (1<<comm)
-    for d in data:
-        if d["name"] == comm:
-            if len(d["children"]) == 0:
-                d["children"].append({"name": word, "children": []})
-            else:
-                d["children"][0]["children"].append({"name": word, "size": weights[word]})
+    else:
+        for d in data:
+            if d["community"] == comm:
+                if int(weights[d["name"]] / 4) < weights[word]: #threshold 설정: 하위 25% 제거
+                    pass
+                    
 
 
 import json
 result = {"name":"my_cp", "children": data}
 with open("d3/my_cp.json", "w") as json_file:
     json.dump(result, json_file, indent=4)
+'''

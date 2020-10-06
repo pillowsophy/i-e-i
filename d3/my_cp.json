@@ -2,15 +2,12 @@
     "name": "my_cp",
     "children": [
         {
-            "name": 0,
+            "community": 0,
+            "name": "bars",
             "children": [
                 {
-                    "name": "bars",
+                    "name": "bar",
                     "children": [
-                        {
-                            "name": "bar",
-                            "size": 29
-                        },
                         {
                             "name": "saturated",
                             "size": 26
@@ -44,14 +41,6 @@
                             "size": 9
                         },
                         {
-                            "name": "wide",
-                            "size": 8
-                        },
-                        {
-                            "name": "provide",
-                            "size": 8
-                        },
-                        {
                             "name": "boost",
                             "size": 7
                         },
@@ -70,33 +59,39 @@
                         {
                             "name": "meals",
                             "size": 7
+                        }
+                    ]
+                },
+                {
+                    "name": "satisfying",
+                    "children": [
+                        {
+                            "name": "satisfy",
+                            "size": 11
                         },
                         {
-                            "name": "fooled",
-                            "size": 4
+                            "name": "specific",
+                            "size": 10
+                        },
+                        {
+                            "name": "snickers",
+                            "size": 10
+                        },
+                        {
+                            "name": "flavors",
+                            "size": 10
                         }
                     ]
                 }
             ]
         },
         {
-            "name": 1,
+            "community": 1,
+            "name": "energy",
             "children": [
                 {
-                    "name": "energy",
+                    "name": "wide",
                     "children": [
-                        {
-                            "name": "protein",
-                            "size": 18
-                        },
-                        {
-                            "name": "nutrition",
-                            "size": 17
-                        },
-                        {
-                            "name": "contain",
-                            "size": 17
-                        },
                         {
                             "name": "ingredients",
                             "size": 8
@@ -108,10 +103,6 @@
                         {
                             "name": "containing",
                             "size": 8
-                        },
-                        {
-                            "name": "foods",
-                            "size": 7
                         },
                         {
                             "name": "gaps",
@@ -142,31 +133,31 @@
             ]
         },
         {
-            "name": 2,
+            "community": 2,
+            "name": "protein",
             "children": [
                 {
-                    "name": "higher",
+                    "name": "nutrition",
                     "children": [
                         {
-                            "name": "variety",
-                            "size": 9
+                            "name": "contain",
+                            "size": 17
                         },
                         {
-                            "name": "tide",
-                            "size": 9
-                        },
-                        {
-                            "name": "category",
-                            "size": 9
-                        },
-                        {
-                            "name": "place",
-                            "size": 9
-                        },
-                        {
-                            "name": "consumed",
-                            "size": 9
-                        },
+                            "name": "foods",
+                            "size": 7
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "community": 3,
+            "name": "higher",
+            "children": [
+                {
+                    "name": "consumed",
+                    "children": [
                         {
                             "name": "suited",
                             "size": 9
@@ -192,14 +183,6 @@
                             "size": 8
                         },
                         {
-                            "name": "carbohydrates",
-                            "size": 7
-                        },
-                        {
-                            "name": "generally",
-                            "size": 7
-                        },
-                        {
                             "name": "coatings",
                             "size": 7
                         },
@@ -208,12 +191,20 @@
                             "size": 7
                         },
                         {
-                            "name": "weight",
-                            "size": 7
+                            "name": "intended",
+                            "size": 6
                         },
                         {
-                            "name": "decent",
-                            "size": 7
+                            "name": "try",
+                            "size": 6
+                        },
+                        {
+                            "name": "created",
+                            "size": 6
+                        },
+                        {
+                            "name": "benefit",
+                            "size": 6
                         },
                         {
                             "name": "terms",
@@ -222,41 +213,18 @@
                         {
                             "name": "needs",
                             "size": 5
-                        },
-                        {
-                            "name": "watch",
-                            "size": 3
-                        },
-                        {
-                            "name": "example",
-                            "size": 3
-                        },
-                        {
-                            "name": "granola",
-                            "size": 3
-                        },
-                        {
-                            "name": "sugar",
-                            "size": 3
-                        },
-                        {
-                            "name": "low",
-                            "size": 3
                         }
                     ]
                 }
             ]
         },
         {
-            "name": 3,
+            "community": 4,
+            "name": "aim",
             "children": [
                 {
-                    "name": "aim",
+                    "name": "syrup",
                     "children": [
-                        {
-                            "name": "syrup",
-                            "size": 15
-                        },
                         {
                             "name": "chocolate",
                             "size": 15
@@ -286,6 +254,10 @@
                             "size": 13
                         },
                         {
+                            "name": "provide",
+                            "size": 8
+                        },
+                        {
                             "name": "brown",
                             "size": 8
                         },
@@ -302,15 +274,12 @@
             ]
         },
         {
-            "name": 4,
+            "community": 5,
+            "name": "athletes",
             "children": [
                 {
-                    "name": "athletes",
+                    "name": "satisfying",
                     "children": [
-                        {
-                            "name": "satisfying",
-                            "size": 12
-                        },
                         {
                             "name": "satisfy",
                             "size": 11
@@ -332,11 +301,24 @@
             ]
         },
         {
-            "name": 5,
+            "community": 6,
+            "name": "variety",
             "children": [
                 {
-                    "name": "serve",
+                    "name": "tide",
                     "children": [
+                        {
+                            "name": "category",
+                            "size": 9
+                        },
+                        {
+                            "name": "place",
+                            "size": 9
+                        },
+                        {
+                            "name": "serve",
+                            "size": 9
+                        },
                         {
                             "name": "nutritious",
                             "size": 9
@@ -346,13 +328,48 @@
                             "size": 9
                         },
                         {
-                            "name": "nuts",
-                            "size": 9
+                            "name": "carbohydrates",
+                            "size": 7
                         },
                         {
-                            "name": "yogurt",
-                            "size": 9
+                            "name": "generally",
+                            "size": 7
                         },
+                        {
+                            "name": "weight",
+                            "size": 7
+                        },
+                        {
+                            "name": "decent",
+                            "size": 7
+                        },
+                        {
+                            "name": "example",
+                            "size": 3
+                        },
+                        {
+                            "name": "granola",
+                            "size": 3
+                        },
+                        {
+                            "name": "sugar",
+                            "size": 3
+                        },
+                        {
+                            "name": "low",
+                            "size": 3
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "community": 7,
+            "name": "nuts",
+            "children": [
+                {
+                    "name": "yogurt",
+                    "children": [
                         {
                             "name": "vary",
                             "size": 8
@@ -378,29 +395,8 @@
             ]
         },
         {
-            "name": 6,
-            "children": [
-                {
-                    "name": "intended",
-                    "children": [
-                        {
-                            "name": "try",
-                            "size": 6
-                        },
-                        {
-                            "name": "created",
-                            "size": 6
-                        },
-                        {
-                            "name": "benefit",
-                            "size": 6
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": 7,
+            "community": 8,
+            "name": "fooled",
             "children": [
                 {
                     "name": "palm",
@@ -427,6 +423,10 @@
                         },
                         {
                             "name": "afford",
+                            "size": 3
+                        },
+                        {
+                            "name": "watch",
                             "size": 3
                         }
                     ]
