@@ -12,7 +12,7 @@ class Circle:
         if(len(newlist) < 7):
             outercircle = []
             for w in newlist:
-                outercircle.append({"name": w, "size": self.weights[w]})
+                outercircle.append({"name": w, "size": str(self.weights[w]*1000)})
             return outercircle
         
         SG = self.IG.subgraph(newlist) # 기존 그래프가 있어야 간편
@@ -35,7 +35,7 @@ class Circle:
             # make new list by each commynities
             for j, w in enumerate(df.index[df['comm'] == c]):
                 if (j == 0):
-                    innercircle = {"name": df.iloc[idx].name}
+                    innercircle = {"name": df.iloc[idx].name, "size": str(df.iloc[idx]["weight"]*1000)}
                     idx += df.groupby('comm').size()[c]
                 else:
                     newList.append(w)

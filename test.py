@@ -2,8 +2,8 @@ level = 3
 numofkeys = 5 #the number of mainkeywords   #2**level -1 #sum of G.P. with common ratio = 2
 
 from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
-text = get_data('data/EI_original copy.txt')
-# text = get_data()
+# text = get_data('data/EI_original copy.txt')
+text = get_data()
 wbys = word_by_sent(text)
 wordlist = wbys_to_word(wbys)
 wtoi = word_to_idx(wordlist)
@@ -39,18 +39,18 @@ MC = Circle(IG, weights)
 
 outercircle = {"name": "my_cp_v2", "children": []}
 idx = 0
-for c in range(2): #len(df.groupby('comm').size())
+for c in range(len(data.groupby('comm').size())): #len(df.groupby('comm').size())
     newList = []
     # make new list by each commynities
     for j, w in enumerate(data.index[data['comm'] == c]):
         if (j == 0):
-            innercircle = {"name": data.iloc[idx].name}
+            innercircle = {"name": data.iloc[idx].name, "size": str(data.iloc[idx]["weight"]*1000)}
             idx += data.groupby('comm').size()[c]
         else:
             newList.append(w)
     innercircle["children"] = MC.makeCircle(newList)
     outercircle["children"].append(innercircle)
-
+print(outercircle)
 
 import json
 with open("d3/my_cp_2.json", "w") as json_file:
