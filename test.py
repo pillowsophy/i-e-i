@@ -1,9 +1,8 @@
-level = 3
-numofkeys = 5 #the number of mainkeywords   #2**level -1 #sum of G.P. with common ratio = 2
+topwords = 100
 
 from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
-# text = get_data('data/EI_original copy.txt')
-text = get_data()
+text = get_data('data/EI_original copy.txt')
+# text = get_data()
 wbys = word_by_sent(text)
 wordlist = wbys_to_word(wbys)
 wtoi = word_to_idx(wordlist)
@@ -18,7 +17,11 @@ import algorithms.visualization as vis
 import networkx as nx
 
 cnt_draw = vis.counter_draw(counter,g_words)
-IG = vis.initialGraph(cnt_draw,g_words)
+_IG = vis.initialGraph(cnt_draw,g_words)
+
+if(topwords > len(g_words)):
+    topwords = len(g_words)
+IG = _IG.subgraph(g_words[:topwords])
 
 vis.communityGraph(IG)
 comms = nx.get_node_attributes(IG, 'comm')
@@ -27,31 +30,13 @@ subnodes = keywords_to_nodes(mainkeywords)
 nx.set_node_attributes(IG, subnodes)
 weights = nx.get_node_attributes(IG, 'weight')
 
-import pandas as pd
-pdc = pd.Series(comms, name='comm')
-pdw = pd.Series(weights, name='weight')
-data = pd.concat([pdc, pdw], axis=1)
-data = data.sort_values(by=['comm','weight'], ascending=[True, False])
-
 from algorithms.makecircle import Circle
 
 MC = Circle(IG, weights)
 
-outercircle = {"name": "my_cp_v2", "children": []}
-idx = 0
-for c in range(len(data.groupby('comm').size())): #len(df.groupby('comm').size())
-    newList = []
-    # make new list by each commynities
-    for j, w in enumerate(data.index[data['comm'] == c]):
-        if (j == 0):
-            innercircle = {"name": data.iloc[idx].name, "size": str(data.iloc[idx]["weight"]*1000)}
-            idx += data.groupby('comm').size()[c]
-        else:
-            newList.append(w)
-    innercircle["children"] = MC.makeCircle(newList)
-    outercircle["children"].append(innercircle)
-print(outercircle)
+outercircle = {"name": "my_cp_v2"}
+outercircle["children"] = MC.makeCircle(wordlist)
 
 import json
-with open("d3/my_cp_2.json", "w") as json_file:
+with open("d3/readme.json", "w") as json_file:
     json.dump(outercircle, json_file, indent=4)
