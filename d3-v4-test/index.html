@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+ <nav>
+  <label class="title">D3v4 test🐟</label>
+ </nav>
+ 
+  <script>
+   //get screen with and height
+	const w=1400,
+      	h=500;
+
+    //setup margin and plot area width
+    const margin={top:380,right:600,bottom:10,left:160},
+    	  width=w-margin.left-margin.right,
+    	  height=h-margin.top-margin.bottom;
+
+    //append div and svg and g - margin convention
+    $("body").append("<div class='plot'></div>");
+    const svg=d3.select(".plot").append("svg")
+    		.attr("width",w)
+    		.attr("height",h)
+        .append("g").attr("transform","translate("+margin.top+","+margin.left+")");
+
+    const simulation = d3.forceSimulation()
+                         .velocityDecay(0.8)
+    					 .force("links",d3.forceLink().id(function(d){return d.id}))
+    					 .force("charge",d3.forceManyBody().strength(-100))
+                         .force("collide",d3.forceCollide())
+    					 .force("center",d3.forceCenter(width/2,height/2));		
+
+    var color = d3.scaleOrdinal(d3.schemeCategory20c);	
+    var size =d3.scaleLog().range([2.5,25])
+
+    d3.queue()
+      .defer(d3.csv,"data.csv",parse)
+      .await(ready)
+
+    function ready (error,data){
+    	if (error) throw error;
+
+    	
+        
+        const nestByWebsite=d3.nest().key((d)=>{return d.website})
+                              .entries(data);
+        
+        nestByWebsite.forEach((d)=>{
+            d.volume=d3.sum(d.values,(d)=>{return d.value});
+            console.log(d.key,d.volume)    
+        })
+        
+        const nestByUsername=d3.nest().key((d)=>{return d.username})
+                              .entries(data);
+        
+        nestByUsername.forEach((d)=>{
+            d.volume=d3.sum(d.values,(d)=>{return d.value});
+               
+        })
+        
+        
+	    const nodes=[], 
+	    	links=[],
+	    	graph={};
+
+   
+    	//push all wesite and username to nodes=[] and remove duplicate value
+        nestByWebsite.forEach((d)=>{
+            nodes.push({"id":d.key,"type":"source","volume":d.volume})
+            
+        })
+        
+        nestByUsername.forEach((d)=>{
+            nodes.push({"id":d.key,"type":"target","volume":d.volume})
+            
+        })
+
+    	data.forEach((d)=>{
+    		links.push(
+    			{"source":d.website,"target":d.username,"value":d.value}
+    		 )
+    	})
+
+    	graph.nodes=nodes,
+    	graph.links=links;
+        
+    	var link = svg.append("g")
+      				  .attr("class", "links")
+					  .selectAll("line")
+					  .data(graph.links)
+					  .enter().append("line")
+      			      .attr("stroke-width", "1");
+        
+       
+        
+        
+        size.domain(d3.extent(nodes,(d)=>{return d.volume}))
+
+    	var node = svg.append("g")
+				      .attr("class", "nodes")
+				      .selectAll("circle")
+				      .data(graph.nodes)
+				      .enter().append("circle")
+				      .attr("r", (d) =>{ return size(d.volume); })
+				      .attr("fill", (d) =>{ return color(d.type); })
+                      .call(d3.drag()
+                              .on("start", dragstarted)
+                              .on("drag", dragged)
+                              .on("end", dragended));
+        
+//        
+        var label = svg.append("g")
+				      .attr("class", "label")
+				      .selectAll("text")
+				      .data(graph.nodes)
+				      .enter().append("text")
+				      .text((d)=>{ if (d.type=="source"){return d.id}else{return}})
+                      .call(d3.drag()
+                              .on("start", dragstarted)
+                              .on("drag", dragged)
+                              .on("end", dragended));
+
+
+	     	simulation.nodes(graph.nodes).on("tick", ticked);
+			simulation.force("links").links(graph.links);
+            simulation.force("collide").radius((d)=>{return size(d.volume)})
+
+	    function ticked() {
+    	
+	    	link
+	        .attr("x1", function(d) { return d.source.x; })
+	        .attr("y1", function(d) { return d.source.y; })
+	        .attr("x2", function(d) { return d.target.x; })
+	        .attr("y2", function(d) { return d.target.y; });
+
+	   		 node
+	        .attr("cx", function(d) { return d.x; })
+	        .attr("cy", function(d) { return d.y; });
+            
+            
+            label
+	        .attr("x", function(d) { return d.x; })
+	        .attr("y", function(d) { return d.y+2; });
+  	    }
+        
+        function dragstarted(d) {
+          if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(d) {
+          d.fx = d3.event.x;
+          d.fy = d3.event.y;
+        }
+
+        function dragended(d) {
+          if (!d3.event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+
+    }	
+
+
+    
+    
+    
+    
+    function parse(d){
+
+    	return {
+    		website:d.website,
+    		username:d.user_name,
+    		value:+d.link_share
+    	}
+
+    }		
+
+  </script>
+
+ <div class="content">
+   <div class="subtitle">&nbsp;&nbsp;Information philosophy data visualization project</div>
+   <div class="maincontent">What I am concerned with is knowledge only—that we should think correctly and so far arrive at some truth,
+however unimportant: I do not say that such knowledge will make us more useful members of society. If
+anyone does not care for knowledge for its own sake, then I have nothing to say to him: only it should not be
+thought that a lack of interest in what I have to say is any ground for holding it untrue.</div>
+  <div class="subcontent">G. E. Moore, Principia Ethica, Moore (1993), p. 115.</div>
+ </div>
+</body>

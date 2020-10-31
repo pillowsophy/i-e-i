@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Alike+Angular&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&display=swap');
+
+*{
+  background-color: #f1f1ef;
+}
+
+label.title {
+ display: flex;
+ justify-content: center;
+ font-size: 30px;
+ font-style: italic;
+ font-weight: bold;
+ padding-top: 10px;
+ padding-bottom: 20px;
+ font-family: 'Alike Angular', serif;
+ letter-spacing: 0.5em;
+ color: #130515;
+}
+
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.4;
+}
+
+
+	.nodes circle {
+  stroke: #e3e3e5;
+  stroke-width: 1px;
+}
+
+	text{  
+    font-family: 'DM Mono', monospace;
+  text-anchor:middle;
+  font-size:11px;  
+  color: #130515;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: left;
+  padding-bottom: 10px;
+  font-size: 17px;
+  font-family: 'Alike Angular', serif;
+  color: #262626;
+
+}
+
+.content {
+  font-size: 15px;
+  padding-left: 6px;
+  font-family: 'Alike Angular', serif;
+  color: #262626;
+  letter-spacing: 0.1em;
+}
+
+.subcontent {
+  font-size: 13px;
+  padding-top: 10px;
+  font-family: 'Alike Angular', serif;
+  color: #262626;
+}
+  
+
+
