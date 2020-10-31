@@ -1,8 +1,8 @@
 topwords = 100
 
 from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
-text = get_data('data/EI_original copy.txt')
-# text = get_data()
+# text = get_data('data/EI_original copy.txt')
+text = get_data()
 wbys = word_by_sent(text)
 wordlist = wbys_to_word(wbys)
 wtoi = word_to_idx(wordlist)
