@@ -3,17 +3,18 @@ import networkx as nx
 import algorithms.visualization as vis
 
 class Circle:
-    def __init__(self, IG, weights):
+    def __init__(self, IG, weights, comms):
         self.IG = IG
         self.weights = weights
-        self.nodesize = 100
+        self.comms = comms
+        self.nodesize = 1
 
     ##algorithm
     def makeCircle(self, newlist):
         if(len(newlist) < 7):
             outercircle = []
             for w in newlist:
-                outercircle.append({"name": w, "size": str(self.weights[w]*self.nodesize)})
+                outercircle.append({"name": w, "size": str(self.weights[w]*self.nodesize), "comm":str(self.comms[w])})
             return outercircle
         
         SG = self.IG.subgraph(newlist) # 기존 그래프가 있어야 간편
@@ -36,7 +37,7 @@ class Circle:
             # make new list by each commynities
             for j, w in enumerate(df.index[df['comm'] == c]):
                 if (j == 0):
-                    innercircle = {"name": df.iloc[idx].name, "size": str(df.iloc[idx]["weight"]*self.nodesize)}
+                    innercircle = {"name": df.iloc[idx].name, "size": str(df.iloc[idx]["weight"]*self.nodesize), "comm":str(self.comms[w])}
                     idx += df.groupby('comm').size()[c]
                 else:
                     newList.append(w)

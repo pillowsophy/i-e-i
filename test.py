@@ -1,8 +1,8 @@
 topwords = 100
 
 from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
-# text = get_data('data/EI_original copy.txt')
-text = get_data()
+text = get_data('data/EI_original copy.txt')
+# text = get_data()
 wbys = word_by_sent(text)
 wordlist = wbys_to_word(wbys)
 wtoi = word_to_idx(wordlist)
@@ -25,18 +25,17 @@ IG = _IG.subgraph(g_words[:topwords])
 
 vis.communityGraph(IG)
 comms = nx.get_node_attributes(IG, 'comm')
-
 subnodes = keywords_to_nodes(mainkeywords)
 nx.set_node_attributes(IG, subnodes)
 weights = nx.get_node_attributes(IG, 'weight')
 
 from algorithms.makecircle import Circle
 
-MC = Circle(IG, weights)
+MC = Circle(IG, weights, comms)
 
-outercircle = {"name": "my_cp_v2"}
+outercircle = {"name": "The Ethics of Information"}
 outercircle["children"] = MC.makeCircle(wordlist)
 
 import json
-with open("d3/readme.json", "w") as json_file:
+with open("d3/new.json", "w") as json_file:
     json.dump(outercircle, json_file, indent=4)

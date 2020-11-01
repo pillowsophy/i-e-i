@@ -1,7 +1,7 @@
 //make <svg></svg> tag in your html file
 
 //data load
-d3.json("readme.json")
+d3.json("new.json")
   .then((json) => {
     data = json;
     update();

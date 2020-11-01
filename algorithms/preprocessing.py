@@ -24,7 +24,7 @@ def word_by_sent(text_string):
     wbys = []
     for sent in original_sent:
         sent = re.sub(r"[^a-z]+", " ", sent.lower()) #only for eng
-        wbys.append([word for word in split_to_word(sent) if word not in stopwords and word != ''])
+        wbys.append([word for word in split_to_word(sent) if word not in stopwords and word != '' and len(word) > 2])
     return wbys
 
 def idx_by_sent(wbys, wtoi): #used for textrank
