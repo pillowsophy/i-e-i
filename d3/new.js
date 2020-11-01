@@ -1,3 +1,14 @@
+//make <svg></svg> tag in your html file
+
+//data load
+d3.json("readme.json")
+  .then((json) => {
+    data = json;
+    update();
+  })
+  .catch(e => {console.log(e);}); 
+
+// inner functions
 drag = simulation => {
   
     function dragstarted(event, d) {
@@ -36,30 +47,34 @@ color = c => {
     return d3.schemeTableau10[num];
 }
 
-var height = 1000
-var width = 800
 
-var data = d3.json("readme.json").then(data => {return data;});
+// draw graph
+var height = 700;
+var width = 800;
+var data;
 
 
-      console.log(data);
-    const root = d3.hierarchy(data);
-    const links = root.links();
-    const nodes = root.descendants();
+function update(){
+    console.log(data);
+    var root = d3.hierarchy(data);
+    var links = root.links();
+    var nodes = root.descendants();
   
-    const simulation = d3.forceSimulation(nodes)
+    var simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.id).distance(10).strength(0.7))
         .force("charge", d3.forceManyBody().strength(-160))
         .force("x", d3.forceX())
         .force("y", d3.forceY());
   
-    const svg = d3.create("svg")
+    var svg = d3.select("svg")
         .attr("viewBox", [-width / 2, -height / 2, width, height])
+        .attr("width", width)
+        .attr("height", height)
         .attr("font-size", 10)
         .attr("font-family", "sans-serif")
         .attr("text-anchor", "middle");
   
-    const link = svg.append("g")
+    var link = svg.append("g")
         .attr("stroke", "#999")
         .attr("stroke-opacity", 0.6)
       .selectAll("line")
@@ -67,24 +82,23 @@ var data = d3.json("readme.json").then(data => {return data;});
       .join("line");
   
     
-    const node = svg.append("g").selectAll(".node")
+    var node = svg.append("g").selectAll(".node")
         .data(nodes)
         .enter().append("g")
         .attr("class", "node")
         .call(drag(simulation));
     
-    const circle = node.append("circle")
+    var circle = node.append("circle")
       .join("circle")
       .attr("fill", d=>color(d.data.size))
       .attr("stroke", "#fff")
       .attr("r", d => scale(d.data.size));
     
-    const name = node.append("text")
+    var name = node.append("text")
         .text(d=>d.data.name)
         .style("font-size", "0.85em")
         .style("color", "#2c2c2c");
     
-      
     simulation.on("tick", () => {
       link
           .attr("x1", d => d.source.x)
@@ -100,3 +114,4 @@ var data = d3.json("readme.json").then(data => {return data;});
         .attr("dx", d=>d.x)
         .attr("dy", d=>d.y + 5);
     });
+  }
