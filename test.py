@@ -1,6 +1,6 @@
-topwords = 100
+topwords = 90
 
-from algorithms.preprocessing import get_data, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
+from algorithms.preprocessing import get_data, split_to_sent, word_by_sent, wbys_to_word, word_to_idx, idx_by_sent
 text = get_data('data/EI_original copy.txt')
 # text = get_data()
 wbys = word_by_sent(text)
@@ -21,6 +21,11 @@ _IG = vis.initialGraph(cnt_draw,g_words)
 
 if(topwords > len(g_words)):
     topwords = len(g_words)
+
+from algorithms.findwords import paragraph
+sent = split_to_sent(text)
+para = paragraph(sent, g_words[:topwords])
+
 IG = _IG.subgraph(g_words[:topwords])
 
 vis.communityGraph(IG)
@@ -31,11 +36,11 @@ weights = nx.get_node_attributes(IG, 'weight')
 
 from algorithms.makecircle import Circle
 
-MC = Circle(IG, weights, comms)
+MC = Circle(IG, weights, comms, para)
 
 outercircle = {"name": "The Ethics of Information"}
 outercircle["children"] = MC.makeCircle(wordlist)
 
 import json
-with open("d3/new.json", "w") as json_file:
+with open("d3/data.json", "w") as json_file:
     json.dump(outercircle, json_file, indent=4)
